@@ -1,0 +1,23 @@
+version: '3'
+services:
+  fastapi:
+    build:
+      context: .
+      dockerfile: app/Dockerfile
+    ports:
+      - '8000:8000'
+    depends_on:
+      - redis
+      - postgres
+  redis:
+    image: 'redis:alpine'
+    ports:
+      - '6379:6379'
+  postgres:
+    image: 'postgres:13'
+    ports:
+      - '5433:5432'
+    environment:
+      POSTGRES_DB: user
+      POSTGRES_USER: root
+      POSTGRES_PASSWORD: zahra1380
